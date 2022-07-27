@@ -6,6 +6,9 @@ import br.com.alura.loja.modelo.Produto;
 public class ProdutoDao {
 
 	private EntityManager em;
+	
+	public ProdutoDao() {
+	}
 
 	public ProdutoDao(EntityManager em) {
 		this.em = em;
