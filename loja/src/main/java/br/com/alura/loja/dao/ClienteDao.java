@@ -8,9 +8,6 @@ public class ClienteDao {
 
 	private EntityManager em;
 
-	public ClienteDao() {
-	}
-
 	public ClienteDao(EntityManager em) {
 		this.em = em;
 	}
@@ -18,7 +15,9 @@ public class ClienteDao {
 	public void cadastrar(Cliente cliente) {
 		this.em.persist(cliente);
 	}
+	
 	public Cliente buscarPorId(Long id) {
 		return em.find(Cliente.class, id);
 	}
+
 }

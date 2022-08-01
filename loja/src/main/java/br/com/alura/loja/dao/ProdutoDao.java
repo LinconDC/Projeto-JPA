@@ -92,7 +92,7 @@ public class ProdutoDao {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Produto> query = builder.createQuery(Produto.class);
 		Root<Produto> from = query.from(Produto.class);
-		
+
 		Predicate filtros = builder.and();
 
 		if (nome != null && !nome.trim().isEmpty()) {
@@ -105,7 +105,7 @@ public class ProdutoDao {
 			builder.and(filtros, builder.equal(from.get("dataCadastro"), dataCadastro));
 		}
 		query.where(filtros);
-		
+
 		return em.createQuery(query).getResultList();
 	}
 
