@@ -7,7 +7,7 @@ import br.com.alura.loja.modelo.Categoria;
 public class CategoriaDao {
 
 	private EntityManager em;
-	
+
 	public CategoriaDao() {
 	}
 

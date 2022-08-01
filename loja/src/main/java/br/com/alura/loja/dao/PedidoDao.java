@@ -12,9 +12,6 @@ public class PedidoDao {
 
 	private EntityManager em;
 
-	public PedidoDao() {
-	}
-
 	public PedidoDao(EntityManager em) {
 		this.em = em;
 	}
@@ -28,33 +25,25 @@ public class PedidoDao {
 		return em.createQuery(jpql, BigDecimal.class)
 				.getSingleResult();
 	}
-	public List<RelatorioDeVendasVo> relatorioDeVendas(){
+	
+	public List<RelatorioDeVendasVo> relatorioDeVendas() {
 		String jpql = "SELECT new br.com.alura.loja.vo.RelatorioDeVendasVo("
 				+ "produto.nome, "
 				+ "SUM(item.quantidade), "
-				+ "MAX(pedido.data))"
+				+ "MAX(pedido.data)) "
 				+ "FROM Pedido pedido "
 				+ "JOIN pedido.itens item "
 				+ "JOIN item.produto produto "
 				+ "GROUP BY produto.nome "
 				+ "ORDER BY item.quantidade DESC";
-		return em.createQuery(jpql, RelatorioDeVendasVo.class).getResultList();
+		return em.createQuery(jpql, RelatorioDeVendasVo.class)
+				.getResultList();
 	}
+	
+	public Pedido buscarPedidoComCliente(Long id) {
+		return em.createQuery("SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = :id", Pedido.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
